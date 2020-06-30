@@ -61,7 +61,7 @@ const translations = {
     confirmDelete: 'Do you really want to remove this item?',
     welcomeOnBoard_title: 'Welcome on Board!',
     welcomeOnBoard_subtitle: 'Now you are one of us! We prepared a few tips for you to start:',
-    loginWelcome: 'To AdminBro - the best admin framework for Node.js apps, based on React.',
+    loginWelcome: 'To Cauldron of War!',
     addingResources_title: 'Adding Resources',
     addingResources_subtitle: 'How to add new resources to the sidebar',
     customizeResources_title: 'Customize Resources',
