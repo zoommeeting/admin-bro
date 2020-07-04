@@ -19,13 +19,51 @@ const Wrapper = styled(Box)`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
 `
 
 type Props = {
   message?: string;
   action: string;
 }
+
+const color = '#4268F6';
+
+const MyButtonLeft = styled.button`
+  background: transparent;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-top: 2px solid ${color};
+  border-bottom: 2px solid ${color};
+  border-left: 2px solid ${color};
+  border-right: 0px solid ${color};
+  font-size: 16px;
+  color: ${color};
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 0.5em 1em;
+  width: 240px;
+  cursor:pointer;
+  :focus {outline:0;}
+`
+
+const MyButtonRight = styled.button`
+  background: transparent;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-top: 2px solid ${color};
+  border-bottom: 2px solid ${color};
+  border-left: 0px solid ${color};
+  border-right: 2px solid ${color};
+  color: white;
+  background-color: ${color};
+  font-size: 16px;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 0.5em 1em;
+  width: 240px;
+  cursor:pointer;
+  :focus {outline:0;}
+`
 
 const SoftwareBrothers: React.FC = () => (
   <Box position="absolute" left={0} bottom={5} right={0}>
@@ -50,85 +88,67 @@ const Login: React.FC<Props> = (props) => {
   const { action, message } = props
   const { translateLabel, translateButton, translateProperty, translateMessage } = useTranslation()
   const branding = useSelector((state: ReduxState) => state.branding)
-
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Wrapper flex variant="grey">
+      <Wrapper flex variant="white">
+        <Box flex width={[1, 2 / 3, 'auto']}>
+          <MyButtonLeft id="home">{"Home"}</MyButtonLeft>
+          <MyButtonRight id="signin">{"Sign In"}</MyButtonRight>
+        </Box>
         <Box bg="white" height="440px" flex boxShadow="login" width={[1, 2 / 3, 'auto']}>
-          <Box
-            bg="primary100"
-            color="white"
-            p="x3"
-            width="380px"
-            flexGrow={0}
-            display={['none', 'none', 'block']}
-            position="relative"
-          >
-            <H2 fontWeight="lighter">{translateLabel('loginWelcome')}</H2>
-            <Text fontWeight="lighter" mt="default">
-              {translateMessage('loginWelcome')}
-            </Text>
-            <Text textAlign="center" p="xxl">
-              <Box display="inline" mr="default">
-                <Illustration variant="Planet" width={82} height={91} />
-              </Box>
-              <Box display="inline">
-                <Illustration variant="Astronaut" width={82} height={91} />
-              </Box>
-              <Box display="inline" position="relative" top="-20px">
-                <Illustration variant="FlagInCog" width={82} height={91} />
-              </Box>
-            </Text>
-            {branding.softwareBrothers ? (<SoftwareBrothers />) : null}
-          </Box>
-          <Box
-            as="form"
-            action={action}
-            method="POST"
-            p="x3"
-            flexGrow={1}
-            width={['100%', '100%', '480px']}
-          >
-            <H5 mb="xl">
-              {branding.logo && (
-                <Box
-                  as="img"
-                  src={branding.logo}
-                  alt={branding.companyName}
-                  height="35px"
-                  mr="lg"
-                  mt="-3px"
+          <div hidden={true} id="home_screen">
+            <img src="/user/frontend/assets/CoW.png"/>
+          </div>
+          <div hidden={false} id="login_screen">
+            <Box
+              as="form"
+              action={action}
+              method="POST"
+              p="x3"
+              flexGrow={1}
+              width={['100%', '100%', '480px']}
+            >
+              <H5 mb="xl">
+                {/*branding.logo && (
+                  <Box
+                    as="img"
+                    src={branding.logo}
+                    alt={branding.companyName}
+                    height="35px"
+                    mr="lg"
+                    mt="-3px"
+                  />
+                )*/}
+                {branding.companyName ?? 'AdminBro'}
+              </H5>
+              {message && (
+                <MessageBox
+                  my="lg"
+                  message={message.split(' ').length > 1 ? message : translateMessage(message)}
+                  variant="danger"
                 />
               )}
-              {branding.companyName ?? 'AdminBro'}
-            </H5>
-            {message && (
-              <MessageBox
-                my="lg"
-                message={message.split(' ').length > 1 ? message : translateMessage(message)}
-                variant="danger"
-              />
-            )}
-            <FormGroup>
-              <Label required>{translateProperty('email')}</Label>
-              <Input name="email" placeholder={translateProperty('email')} />
-            </FormGroup>
-            <FormGroup>
-              <Label required>{translateProperty('password')}</Label>
-              <Input
-                type="password"
-                name="password"
-                placeholder={translateProperty('password')}
-                autoComplete="new-password"
-              />
-            </FormGroup>
-            <Text mt="xl" textAlign="center">
-              <Button variant="primary">
-                {translateButton('login')}
-              </Button>
-            </Text>
-          </Box>
+              <FormGroup>
+                <Label required>{translateProperty('email')}</Label>
+                <Input name="email" placeholder={translateProperty('email')} />
+              </FormGroup>
+              <FormGroup>
+                <Label required>{translateProperty('password')}</Label>
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder={translateProperty('password')}
+                  autoComplete="new-password"
+                />
+              </FormGroup>
+              <Text mt="xl" textAlign="center">
+                <Button variant="primary">
+                  {translateButton('login')}
+                </Button>
+              </Text>
+            </Box>
+          </div>
         </Box>
       </Wrapper>
     </React.Fragment>

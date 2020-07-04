@@ -77,6 +77,9 @@ const Router: RouterType = {
   }, {
     path: '/frontend/assets/logo-mini.svg',
     src: path.join(ASSETS_ROOT, 'images/logo-mini.svg'),
+  }, {
+    path: '/frontend/assets/CoW.png',
+    src: path.join(ASSETS_ROOT, 'images/CoW.png'),
   }],
   routes: [{
     method: 'GET',
