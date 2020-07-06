@@ -37,7 +37,8 @@ const MyButtonLeft = styled.button`
   border-left: 2px solid ${color};
   border-right: 0px solid ${color};
   font-size: 16px;
-  color: ${color};
+  color: white;
+  background-color: ${color};
   margin-top: 2em;
   margin-bottom: 2em;
   padding: 0.5em 1em;
@@ -54,8 +55,7 @@ const MyButtonRight = styled.button`
   border-bottom: 2px solid ${color};
   border-left: 0px solid ${color};
   border-right: 2px solid ${color};
-  color: white;
-  background-color: ${color};
+  color: ${color};
   font-size: 16px;
   margin-top: 2em;
   margin-bottom: 2em;
@@ -97,10 +97,10 @@ const Login: React.FC<Props> = (props) => {
           <MyButtonRight id="signin">{"Sign In"}</MyButtonRight>
         </Box>
         <Box bg="white" height="440px" flex boxShadow="login" width={[1, 2 / 3, 'auto']}>
-          <div hidden={true} id="home_screen">
+          <div hidden={false} id="home_screen">
             <img src="/user/frontend/assets/CoW.png"/>
           </div>
-          <div hidden={false} id="login_screen">
+          <div hidden={true} id="login_screen">
             <Box
               as="form"
               action={action}

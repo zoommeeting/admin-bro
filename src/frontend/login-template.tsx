@@ -82,6 +82,29 @@ const html = (admin: AdminBro, { action, errorMessage }: LoginTemplateAttributes
     <body>
       <div id="app">${loginComponent}</div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function() {
+      $('#home').click(function(){
+        $('#home_screen').removeAttr('hidden');
+        $('#login_screen').attr("hidden",true);
+        $('#home').css('background-color', '#4268F6');
+        $('#home').css('color', '#fff');
+        $('#signin').css('background-color', '#fff');
+        $('#signin').css('color', '#4268F6');
+      });
+      $('#signin').click(function(){
+        $('#login_screen').removeAttr('hidden');
+        $('#home_screen').attr("hidden",true);
+        $('#home').css('background-color', '#fff');
+        $('#signin').css('background-color', '#4268F6');
+        $('#home').css('background-color', '#fff');
+        $('#home').css('color', '#4268F6');
+        $('#signin').css('background-color', '#4268F6');
+        $('#signin').css('color', '#fff');
+      });
+    });
+    </script>
     </html>
   `
 }
