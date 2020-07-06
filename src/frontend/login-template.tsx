@@ -103,6 +103,10 @@ const html = (admin: AdminBro, { action, errorMessage }: LoginTemplateAttributes
         $('#signin').css('background-color', '#4268F6');
         $('#signin').css('color', '#fff');
       });
+      if ($(document).find('.admin-bro_MessageBox').length > 0) {
+        // Login error message.
+        $('#signin').click();
+      }
     });
     </script>
     </html>
